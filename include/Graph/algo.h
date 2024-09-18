@@ -7,7 +7,7 @@
 namespace graph
 {
 template<class Data, class EdgeLengthFunction, class HeuristicFunction>
-std::vector<std::pair<EdgeIdx, NodeIdx>> shortestPath(Graph<Data> graph, NodeIdx start, NodeIdx end,
+std::vector<std::pair<EdgeIdx, NodeIdx>> shortestPath(const Graph<Data>& graph, NodeIdx start, NodeIdx end,
     EdgeLengthFunction f = [](typename Data::Edge){ return 1; },
     HeuristicFunction h = [](typename Data::Node, typename Data::Node){ return 0; })
 {

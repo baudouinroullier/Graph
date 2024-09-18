@@ -103,18 +103,17 @@ public:
 
     void deleteEdge(EdgeIdx index)
     {
-        // delete node from neighbors
-        std::erase_if(node(edge(index)->startNode)->links, [index](auto l){ return l.first == index; });
-        std::erase_if(node(edge(index)->endNode)->links, [index](auto l){ return l.first == index; });
+        // delete edge from links
+        node(edge(index).startNode).links.erase(index);
+        node(edge(index).endNode).links.erase(index);
 
-        // delete edges
-        for (auto eIdx : m_nodes[index]->getEdges())
-            std::erase(m_edges, eIdx);
+        // delete edge
+        m_edges.erase(index);
     }
 
 protected:
     std::map<NodeIdx, Node<Data>> m_nodes;
-    std::map<NodeIdx, Edge<Data>> m_edges;
+    std::map<EdgeIdx, Edge<Data>> m_edges;
     NodeIdx m_curNodeIdx = 0;
     EdgeIdx m_curEdgeIdx = 0;
 };

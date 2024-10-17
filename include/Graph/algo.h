@@ -21,8 +21,8 @@ std::vector<std::pair<EdgeIdx, NodeIdx>> shortestPath(const Graph<Data>& graph, 
 
     auto cmp = [](auto rn1, auto rn2){ return rn1.totalCost() > rn2.totalCost(); };
     std::priority_queue<RankedNode, std::vector<RankedNode>, decltype(cmp)> openList{cmp};
-    std::map<NodeIdx, double> closedList;
-    std::map<NodeIdx, std::pair<EdgeIdx, NodeIdx>> cameFrom;
+    std::unordered_map<NodeIdx, double> closedList;
+    std::unordered_map<NodeIdx, std::pair<EdgeIdx, NodeIdx>> cameFrom;
 
     openList.push({end, 0, 0});
 

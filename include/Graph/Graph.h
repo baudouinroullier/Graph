@@ -2,7 +2,7 @@
 #define GRAPH_H
 
 #include <algorithm>
-#include <map>
+#include <unordered_map>
 #include <queue>
 #include <set>
 #include <vector>
@@ -47,7 +47,7 @@ public:
     NodeIdx index = -1;
     typename Data::Node data{};
 
-    std::map<EdgeIdx, NodeIdx> links {};
+    std::unordered_map<EdgeIdx, NodeIdx> links {};
 };
 
 template<class Data>
@@ -59,10 +59,10 @@ public:
     const Node<Data>& node(NodeIdx i) const { return m_nodes.at(i); }
     const Edge<Data>& edge(EdgeIdx i) const { return m_edges.at(i); }
 
-    std::map<NodeIdx, Node<Data>>& nodes() { return m_nodes; }
-    std::map<EdgeIdx, Edge<Data>>& edges() { return m_edges; }
-    const std::map<NodeIdx, Node<Data>>& nodes() const { return m_nodes; }
-    const std::map<EdgeIdx, Edge<Data>>& edges() const { return m_edges; }
+    std::unordered_map<NodeIdx, Node<Data>>& nodes() { return m_nodes; }
+    std::unordered_map<EdgeIdx, Edge<Data>>& edges() { return m_edges; }
+    const std::unordered_map<NodeIdx, Node<Data>>& nodes() const { return m_nodes; }
+    const std::unordered_map<EdgeIdx, Edge<Data>>& edges() const { return m_edges; }
 
     NodeIdx createNode(typename Data::Node&& data)
     {
@@ -112,8 +112,8 @@ public:
     }
 
 protected:
-    std::map<NodeIdx, Node<Data>> m_nodes;
-    std::map<EdgeIdx, Edge<Data>> m_edges;
+    std::unordered_map<NodeIdx, Node<Data>> m_nodes;
+    std::unordered_map<EdgeIdx, Edge<Data>> m_edges;
     NodeIdx m_curNodeIdx = 0;
     EdgeIdx m_curEdgeIdx = 0;
 };
